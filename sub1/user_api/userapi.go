@@ -47,30 +47,12 @@ func registerToEtcd(c config.Config) error {
 	}
 	defer cli.Close()
 
-	// 创建租约
-	leaseResp, err := cli.Grant(context.Background(), c.Etcd.LeaseTTL)
-	if err != nil {
-		return fmt.Errorf("创建租约失败: %v", err)
-	}
-
 	// 注册服务地址
 	//serviceAddr := fmt.Sprintf("%s:%d", c.Host, c.Port)
-	_, err = cli.Put(context.Background(), c.Etcd.Key, serviceAddr, clientv3.WithLease(leaseResp.ID))
+	_, err = cli.Put(context.Background(), c.Etcd.Key, serviceAddr)
 	if err != nil {
 		return fmt.Errorf("注册服务失败: %v", err)
 	}
-
-	// 定期续期
-	go func() {
-		for {
-			_, err2 := cli.KeepAliveOnce(context.Background(), leaseResp.ID)
-			if err2 != nil {
-				logx.Errorf("续期失败: %v", err2)
-				return
-			}
-			time.Sleep(time.Duration(c.Etcd.LeaseTTL/2) * time.Second)
-		}
-	}()
 
 	logx.Infof("服务注册成功: %s -> %s", c.Etcd.Key, serviceAddr)
 	return nil

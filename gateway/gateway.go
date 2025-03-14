@@ -148,6 +148,7 @@ func (Proxy) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	}
 	service := addrList[1]
 
+	fmt.Println("service", service)
 	// 从服务发现获取实例地址
 	addrs := sd.GetServiceAddrs(service + "_api")
 	if len(addrs) == 0 {
