@@ -1,0 +1,11 @@
+addr: 127.0.0.1:9090
+etcd: 127.0.0.1:2379
+Auth:
+  AccessSecret: 7MdnWxGsBLtMLmBf
+  AccessExpire: 2400
+Log:
+  Encoding: plain
+  TimeFormat: 2006-01-02 15:04:05
+  Stat: false
+Mysql:
+  DataSource: root:zdsmE2J2GMxn6tHX@tcp(47.103.52.101:3306)/system?charset=utf8mb4&parseTime=True&loc=Local

@@ -1,0 +1,14 @@
+Name: user
+Host: 0.0.0.0
+Port: 7777
+Etcd:
+  Hosts:
+    - 127.0.0.1:2379
+  Key: services/user_api/127.0.0.1:8080
+  LeaseTTL: 10 # 租约有效期（秒）
+Mysql:
+  DataSource: root:zdsmE2J2GMxn6tHX@tcp(47.103.52.101:3306)/sub3?charset=utf8mb4&parseTime=True&loc=Local
+Log:
+  Encoding: plain
+  TimeFormat: 2006-01-02 15:04:05
+  Stat: false

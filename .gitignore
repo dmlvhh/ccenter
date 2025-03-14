@@ -4,5 +4,4 @@
 /docs
 /*.exe
 /*/*/tmp
-nc_server
 /gateway/tmp
