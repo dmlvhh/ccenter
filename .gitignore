@@ -1,0 +1,8 @@
+/.idea
+/log
+/tmp
+/docs
+/*.exe
+/*/*/tmp
+nc_server
+/gateway/tmp
